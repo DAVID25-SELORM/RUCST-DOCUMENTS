@@ -1,0 +1,21 @@
+{
+  "name": "regent-university-dms",
+  "version": "1.0.0",
+  "description": "Document Management System for Regent University of Science and Technology",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install",
+    "start": "cd server && npm start",
+    "seed": "cd server && node seed.js"
+  },
+  "keywords": ["document-management", "university", "dms"],
+  "author": "David Selorm Gabion",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
