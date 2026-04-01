@@ -96,11 +96,11 @@ export default function Upload() {
 
   if (success) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto animate-in fade-in zoom-in duration-500">
         <Card>
           <CardContent className="pt-6">
-            <div className="text-center py-8">
-              <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+            <div className="text-center py-8 animate-in slide-in-from-bottom duration-700">
+              <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4 animate-in zoom-in duration-500" />
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 Upload Successful!
               </h2>

@@ -126,9 +126,9 @@ export default function Login() {
                 />
               </div>
 
-              <Button type="submit" className="w-full text-sm sm:text-base" disabled={loading}>
+              <Button type="submit" className="w-full text-sm sm:text-base transition-smooth" disabled={loading}>
                 {loading && <Loader2 className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin" />}
-                Sign In
+                {loading ? 'Signing in...' : 'Sign In'}
               </Button>
             </form>
           </CardContent>

@@ -23,6 +23,23 @@ export default function DashboardLayout() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
+  // Close sidebar when route changes (mobile)
+  React.useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when sidebar is open (mobile)
+  React.useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [sidebarOpen]);
+
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -87,16 +104,22 @@ export default function DashboardLayout() {
       {/* Sidebar Overlay for mobile */}
       {sidebarOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black/50 z-30 transition-opacity"
+          className="lg:hidden fixed inset-0 bg-black/50 z-30 transition-opacity duration-200 animate-in fade-in"
           onClick={() => setSidebarOpen(false)}
+          role="button"
+          aria-label="Close sidebar"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Escape' && setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-72 sm:w-80 lg:w-64 transform bg-white border-r transition-transform duration-200 ease-in-out ${
+        className={`fixed top-0 left-0 z-40 h-screen w-72 sm:w-80 lg:w-64 transform bg-white border-r transition-all duration-300 ease-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 pt-16 lg:pt-0 shadow-2xl lg:shadow-none`}
+        } lg:translate-x-0 pt-16 lg:pt-0 shadow-2xl lg:shadow-none overflow-y-auto`}
+        role="navigation"
+        aria-label="Main navigation"
       >
         <div className="h-full flex flex-col">
           {/* Logo */}
@@ -136,18 +159,20 @@ export default function DashboardLayout() {
           <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
             {navigation.map((item) => {
               const Icon = item.icon;
+              const active = isActive(item.href);
               return (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    isActive(item.href)
-                      ? 'bg-primary text-white'
-                      : 'text-gray-700 hover:bg-gray-100'
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 min-h-[44px] active:scale-95 ${
+                    active
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-gray-700 hover:bg-gray-100 active:bg-gray-200'
                   }`}
+                  aria-current={active ? 'page' : undefined}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5 flex-shrink-0" />
                   <span className="font-medium">{item.name}</span>
                 </Link>
               );
