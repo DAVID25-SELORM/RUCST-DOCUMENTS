@@ -41,11 +41,11 @@ git push -u origin main
    ```
    NODE_ENV=production
    PORT=5000
-   MONGODB_URI=mongodb+srv://adminregent_db_user:hrY4CBREqnmTcmvn@document-system.bl9ho3l.mongodb.net/regent_dms?retryWrites=true&w=majority&appName=document-system
-   JWT_SECRET=regent-university-super-secret-key-2026-production
+   MONGODB_URI=<your-production-mongodb-uri>
+   JWT_SECRET=<your-long-random-production-secret>
    JWT_EXPIRE=7d
    MAX_FILE_SIZE=10485760
-   CLIENT_URL=https://rucst-dms.onrender.com
+   CLIENT_URL=https://your-frontend-url.example
    ```
 
 6. Click **"Create Web Service"**

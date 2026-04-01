@@ -41,7 +41,7 @@ git push -u origin main
 - `CLIENT_URL`: Will be your frontend URL (add after frontend deployment)
 
 #### Frontend (rucst-dms-client):
-- `VITE_API_URL`: Your backend URL (will be: `https://rucst-dms-api.onrender.com`)
+- `VITE_API_URL`: Your backend URL (will be: `https://rucst-dms-api.onrender.com/api`)
 
 6. Click "Apply" to deploy both services
 
@@ -90,7 +90,7 @@ After deployment:
    - **Build Command**: `npm run build`
    - **Output Directory**: dist
    - **Environment Variables**:
-     - `VITE_API_URL=https://rucst-dms-api.onrender.com`
+     - `VITE_API_URL=https://rucst-dms-api.onrender.com/api`
 
 5. Click "Deploy"
 
@@ -116,8 +116,8 @@ Railway is another free option with generous limits.
 ```env
 NODE_ENV=production
 PORT=5000
-MONGODB_URI=mongodb+srv://adminregent_db_user:hrY4CBREqnmTcmvn@document-system.bl9ho3l.mongodb.net/regent_dms?retryWrites=true&w=majority&appName=document-system
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+MONGODB_URI=<your-production-mongodb-uri>
+JWT_SECRET=<your-long-random-production-secret>
 JWT_EXPIRE=7d
 UPLOAD_PATH=./uploads
 MAX_FILE_SIZE=10485760
@@ -126,7 +126,7 @@ CLIENT_URL=https://your-frontend-url.vercel.app
 
 ### Frontend (.env.production)
 ```env
-VITE_API_URL=https://your-backend-url.onrender.com
+VITE_API_URL=https://your-backend-url.onrender.com/api
 ```
 
 ---
